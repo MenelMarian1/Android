@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">PierwszyAndek</string>
+    <string name="Notatki">Notatki</string>
+    <string name="Przypomnienia">Przypomnienia</string>
+    <string name="Kontakty">Kontakty</string>
+    <string name="Multimedia">Multimedia</string>
+    <string name="Nowa">Nowa</string>
+    <string name="Notatka">Notatka</string>
+    <string name="nowa_notatka">Nowa Notatka</string>
+    <string name="view_notes">View Notes</string>
+    <string name="name">name</string>
+    <string name="date">dd-mm-yyyy</string>
+    <string name="hour">hh:mm</string>
+    <string name="btn_delete">Delete</string>
+    <string name="surname">surname</string>
+    <string name="number">number</string>
+    <string name="note">note</string>
+    <string name="Kobieta">Kobieta</string>
+    <string name="Mezczyzna">Mezczyzna</string>
+    <string name="wybierz">Wybierz</string>
+    <string name="avatar">Avatar</string>
+    <string name="call">Call</string>
+</resources>
