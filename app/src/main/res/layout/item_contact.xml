@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,55 +8,43 @@
         android:id="@+id/contactItemDeleteButton"
         android:layout_width="90dp"
         android:layout_height="41dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="232dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="64dp"
         android:onClick="addContact"
         android:text="@string/btn_delete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/callContactItemButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/contactItemName"
-        android:layout_width="224dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="168dp"
+        android:layout_width="199dp"
+        android:layout_height="45dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="19dp"
         android:text="@android:string/defaultMsisdnAlphaTag"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/callContactItemButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/contactItemSurname"
-        android:layout_width="224dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="194dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="19dp"
         android:text="@android:string/defaultMsisdnAlphaTag"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/callContactItemButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.955" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactItemName" />
 
     <Button
         android:id="@+id/callContactItemButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="88dp"
         android:text="@string/call"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/contactItemDeleteButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -65,29 +52,32 @@
         android:id="@+id/contactItemNote"
         android:layout_width="210dp"
         android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactItemSurname" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="120dp"
         android:layout_height="134dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="68dp"
         android:contentDescription="@string/avatar"
-        app:layout_constraintBottom_toTopOf="@+id/contactItemNote"
-        app:layout_constraintEnd_toStartOf="@+id/contactItemName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_call" />
+
+    <TextView
+        android:id="@+id/contactNumber"
+        android:layout_width="257dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactItemNote" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

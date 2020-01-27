@@ -10,37 +10,39 @@
         android:id="@+id/contactName"
         android:layout_width="167dp"
         android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="61dp"
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/contactSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         android:ems="10"
         android:hint="@string/surname"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/contactName"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactName" />
 
     <EditText
         android:id="@+id/contactNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="41dp"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="81dp"
         android:ems="10"
         android:hint="@string/number"
         android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactName" />
+        app:layout_constraintTop_toBottomOf="@+id/contactNote" />
 
     <ImageButton
         android:id="@+id/contactAvatar"
@@ -57,40 +59,30 @@
         android:id="@+id/genderPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="153dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="176dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="37dp"
         android:text="Switch"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactNumber" />
 
     <EditText
         android:id="@+id/contactNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="22dp"
+        android:layout_width="158dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="37dp"
         android:ems="10"
         android:hint="@string/note"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/genderPicker"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/contactAvatar" />
 
     <TextView
         android:id="@+id/gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="450dp"
-        android:layout_marginEnd="246dp"
-        android:layout_marginBottom="262dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="335dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,15 +90,13 @@
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="293dp"
-        android:layout_marginTop="86dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="267dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="44dp"
         android:onClick="onSaveButtonClick"
         android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactNote" />
+        app:layout_constraintStart_toEndOf="@+id/genderPicker"
+        app:layout_constraintTop_toBottomOf="@+id/contactNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

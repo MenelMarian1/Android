@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,10 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.pierwszyandek.R;
+import com.example.pierwszyandek.reminder.AppDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
 public class AddContact extends AppCompatActivity {
@@ -41,32 +45,61 @@ public class AddContact extends AppCompatActivity {
         FloatingActionButton addContact = findViewById(R.id.button);
         Switch genderPicker = findViewById(R.id.genderPicker);
         TextView gender = findViewById(R.id.gender);
+        ImageView avatar = findViewById(R.id.contactAvatar);
         contactsViewModel = ViewModelProviders
                 .of(this)
                 .get(ContactsViewModel.class);
 
+        genderPicker.setOnCheckedChangeListener(((button, isChecked) -> {
+            updateGenderInfo(isChecked);
+        }));
+
         if (getIntent().hasExtra("editing")) {
-            ContactDao dao = ContactsDatabase.get(this).contactDao();
+            ContactDao dao = AppDatabase.get(this).contactDao();
 
             int id = getIntent().getIntExtra("editing", -1);
 
 
-            Executors.newSingleThreadExecutor().execute(() -> {
-                current = dao.findById(id);
+            try {
+                current = Executors
+                        .newSingleThreadExecutor()
+                        .submit(() -> dao.findById(id))
+                        .get();
+
                 contactName.setText(current.getContactName());
                 contactSurname.setText(current.getContactSurname());
                 number.setText(current.getNumber());
                 contactNote.setText(current.getContactNote());
                 genderPicker.setChecked(current.isGender());
-                gender.setText(current.isGender() ? "Kobieta" : "Mezczyzna");
+                if (current.getAvatarPath() != null) {
+                    Picasso.get()
+                            .load(current.getAvatarPath())
+                            .resizeDimen(R.dimen.avatarDim, R.dimen.avatarDim)
+                            .centerCrop()
+                            .into(avatar);
+                }
+
+                if (current.isGender()) {
+
+                    gender.setText("Kobieta");
+
+                } else {
+
+                    gender.setText("Mezczyzna");
+
+                }
 
                 selectedImage = Optional.ofNullable(current)
-                        .map(Contact :: getAvatarPath)
-                        .map(Uri :: parse)
+                        .map(Contact::getAvatarPath)
+                        .map(Uri::parse)
                         .orElse(null);
                 setAvatarImage(selectedImage);
 
-            });
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             updateGenderInfo(false);
         }
@@ -91,9 +124,10 @@ public class AddContact extends AppCompatActivity {
                 .contactSurname(surname)
                 .contactNote(note)
                 .avatarPath(avatar)
-                .gender(contactGenderSwitch.isChecked() ? false : true)
+                .gender(contactGenderSwitch.isChecked())
                 .number(number1)
                 .build();
+        Log.d("addContact", "contact: " + contact);
         if (current != null) {
             contact.setId(current.getId());
             contactsViewModel.update(contact);
@@ -102,27 +136,32 @@ public class AddContact extends AppCompatActivity {
             current = contact;
         }
         Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+        finish();
     }
+
     private void updateGenderInfo(boolean femaleSelected) {
 
         boolean defaultAvatar = !Optional.ofNullable(current).map(Contact::getAvatarPath).isPresent();
-
+        TextView gender = findViewById(R.id.gender);
 
         ImageButton avatarButton = findViewById(R.id.contactAvatar);
 
         if (femaleSelected) {
 
-
+            gender.setText("Kobieta");
             if (defaultAvatar) {
                 avatarButton.setImageResource(R.drawable.woman);
             }
         } else {
 
+            gender.setText("Mezczyzna");
             if (defaultAvatar) {
                 avatarButton.setImageResource(R.drawable.man);
             }
         }
+
     }
+
     private void setAvatarImage(Uri imagePath) {
         ImageButton avatarButton = findViewById(R.id.contactAvatar);
 

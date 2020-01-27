@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pierwszyandek.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -53,12 +54,20 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         Button contactItemDeleteButton = holder.contactItemDeleteButton;
         Button callContactItemButton = holder.callContactItemButton;
         ImageView avatar = holder.contactAvatar;
+        TextView contactNumber = holder.contactNumber;
 
         contactItemName.setText(contact.getContactName());
         contactItemNote.setText(contact.getContactNote());
         contactItemSurname.setText(contact.getContactSurname());
+        contactNumber.setText(contact.getNumber());
 
-
+        if (contact.getAvatarPath() != null) {
+            Picasso.get()
+                    .load(Uri.parse(contact.getAvatarPath()))
+                    .resizeDimen(R.dimen.avatarDim, R.dimen.avatarDim)
+                    .centerCrop()
+                    .into(avatar);
+        }
         contactItemDeleteButton.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "DELETE " + contact.getContactName(), Toast.LENGTH_SHORT).show();
             contactsViewModel.deleteContact(contact);
@@ -67,7 +76,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
         callContactItemButton.setOnClickListener(view -> {
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:123456789"));
+            callIntent.setData(Uri.parse("tel:" + contact.getNumber()));
             view.getContext().startActivity(callIntent);
         });
 
@@ -106,6 +115,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         TextView contactItemSurname;
         Button contactItemDeleteButton;
         ImageView contactAvatar;
+        TextView contactNumber;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -115,7 +125,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             contactItemNote = itemView.findViewById(R.id.contactItemNote);
             contactItemDeleteButton = itemView.findViewById(R.id.contactItemDeleteButton);
             callContactItemButton = itemView.findViewById(R.id.callContactItemButton);
-            contactAvatar = itemView.findViewById(R.id.contactAvatar);
+            contactAvatar = itemView.findViewById(R.id.imageView);
+            contactNumber = itemView.findViewById(R.id.contactNumber);
         }
     }
 }

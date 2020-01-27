@@ -1,7 +1,5 @@
 package com.example.pierwszyandek;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -9,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pierwszyandek.Multimedia.MultimediaActivity;
 import com.example.pierwszyandek.contacts.ContactsActivity;
 import com.example.pierwszyandek.reminder.MemoryActivity;
 import com.example.pierwszyandek.reminder.ReminderScheduler;

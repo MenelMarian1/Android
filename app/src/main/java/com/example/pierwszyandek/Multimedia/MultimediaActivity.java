@@ -1,8 +1,10 @@
-package com.example.pierwszyandek;
+package com.example.pierwszyandek.Multimedia;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.pierwszyandek.R;
 
 public class MultimediaActivity extends AppCompatActivity {
 

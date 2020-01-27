@@ -1,10 +1,13 @@
 package com.example.pierwszyandek.contacts;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.pierwszyandek.reminder.AppDatabase;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -18,7 +21,7 @@ public class ContactsViewModel extends AndroidViewModel {
     public ContactsViewModel(@NonNull Application application) {
         super(application);
 
-        contactDao = ContactsDatabase.get(application.getApplicationContext()).contactDao();
+        contactDao = AppDatabase.get(application.getApplicationContext()).contactDao();
         executorService = Executors.newSingleThreadExecutor();
     }
 
@@ -27,7 +30,10 @@ public class ContactsViewModel extends AndroidViewModel {
     }
 
     void saveContact(Contact contact) {
-        executorService.execute(() -> contactDao.insertAll(contact));
+        executorService.execute(() -> {
+            contactDao.insertAll(contact);
+            Log.d("CVM", "saveContact: " + contact);
+        });
     }
 
     void deleteContact(Contact contact) {
